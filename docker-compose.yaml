@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  web:
+    build: ./src
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    env_file: .env
+    container_name: web_app
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    env_file: .env
