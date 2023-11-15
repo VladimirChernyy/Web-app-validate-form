@@ -2,7 +2,6 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from app.models import TemplateFormModel
 from core.services import find_matching_form, type_fields
 
 
@@ -18,4 +17,4 @@ class FormTemplateView(APIView):
         if matching_form:
             return Response(matching_form, status=status.HTTP_200_OK)
         typed_fields = type_fields(input_fields)
-        return Response(typed_fields,  status=status.HTTP_200_OK)
+        return Response(typed_fields, status=status.HTTP_200_OK)

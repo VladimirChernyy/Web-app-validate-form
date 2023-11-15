@@ -14,56 +14,47 @@ Docker
 ## Как запустить проект:
 
 
-
- Настраиваем Docker
-``` 
-sudo apt update
-sudo apt install curl
-curl -fSL https://get.docker.com -o get-docker.sh
-sudo sh ./get-docker.sh
-sudo apt-get install docker-compose-plugin;
-``` 
 Клонируйте с GitHub проект и перейдите в директорию проекта.
 ``` 
-git@github.com:VladimirChernyy/taski-docker.git
+git@github.com:VladimirChernyy/Web-app-validate-form.git
 
-cd taski-docker
+cd Web-app-validate-form
 ``` 
 
-Создаем файл .env, в котором нужно указать данные
+Создаем файл .env по примеру .env.example
 
 ``` 
 sudo nano .env
 ```
-Добавьте в файл .env код  
-
-```
-POSTGRES_DB=<Желаемое_имя_базы_данных>
-POSTGRES_USER=<Желаемое_имя_пользователя_базы_данных>
-POSTGRES_PASSWORD=<Желаемый_пароль_пользователя_базы_данных>
-DB_HOST=db
-DB_PORT=5432
-```
 
 Соберите и запустите контейнеры в фоновом режиме
 ```
-sudo docker compose -f docker-compose.yml up -d
+sudo docker compose -f docker-compose.yml up --build -d
 ```
 Примените миграции
 ```
-sudo docker compose -f docker-compose.yml exec backend python manage.py migrate
+sudo docker compose -f docker-compose.yml exec web python manage.py migrate
 ```
-Соберите статику
+Загрузите данные в базу данных
 ```
-sudo docker compose -f docker-compose.yml exec backend python manage.py collectstatic
-```
-
-Создайте суперпользователся
-```
-sudo docker compose -f docker-compose.yml exec backend python manage.py createsuperuser
+sudo docker compose -f docker-compose.yml exec web python manage.py load_data
 ```
 
-![main.yml](https://github.com/VladimirChernyy/foodgram-project-react/actions/workflows/main.yml/badge.svg)
+## Примеры запросов:
+
+```
+request POST: http://127.0.0.1:8000/api/v1/get_form/?phone=+7 888 882 22 22&email=jane.doe@example.com
+
+response: "Шаблон формы 14"
+
+request POST: http://127.0.0.1:8000/api/v1/get_form/?phone=+7 888 882 12 22&email=jane.doe@example.com
+
+response:
+            {
+                "field_name1": "phone",
+                "field_name2": "email"
+            }
+```
 
 ## Над проектом работал:
 [Vladimir Chernyy](https://github.com/VladimirChernyy)
