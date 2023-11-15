@@ -6,7 +6,7 @@
 
 ## В проекте были использованы технологии:
 Django REST
-Python 3.9
+Python 3.10
 Gunicorn
 MnogoDB
 Docker
