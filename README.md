@@ -29,15 +29,15 @@ sudo nano .env
 
 Соберите и запустите контейнеры в фоновом режиме
 ```
-sudo docker compose -f docker-compose.yml up --build -d
+sudo docker compose -f docker-compose.yaml up --build -d
 ```
 Примените миграции
 ```
-sudo docker compose -f docker-compose.yml exec web python manage.py migrate
+sudo docker compose -f docker-compose.yaml exec web python manage.py migrate
 ```
 Загрузите данные в базу данных
 ```
-sudo docker compose -f docker-compose.yml exec web python manage.py load_data
+sudo docker compose -f docker-compose.yaml exec web python manage.py load_data
 ```
 
 ## Примеры запросов:
