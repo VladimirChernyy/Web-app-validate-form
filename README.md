@@ -43,11 +43,13 @@ sudo docker compose -f docker-compose.yaml exec web python manage.py load_data
 ## Примеры запросов:
 
 ```
-request POST: http://127.0.0.1:8000/api/v1/get_form/?phone=+7 888 882 22 22&email=jane.doe@example.com
+request POST:
+$ http://127.0.0.1:8000/api/v1/get_form/?phone=+7 888 882 22 22&email=jane.doe@example.com
 
 response: "Шаблон формы 14"
 
-request POST: http://127.0.0.1:8000/api/v1/get_form/?phone=+7 888 882 12 22&email=jane.doe@example.com
+request POST:
+$ http://127.0.0.1:8000/api/v1/get_form/?phone=+7 888 882 12 22&email=jane.doe@example.com
 
 response:
             {
